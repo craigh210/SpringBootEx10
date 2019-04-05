@@ -1,26 +1,64 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Add a To Do</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Enter a To Do</title>
 </head>
 <body>
+<div class="container">
+    <div class="jumbotron">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Much To Do</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/list">To Do List <span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <br />
+        <h4>Enter a To Do</h4>
+
 <form action="#"
       th:action="@{/process}"
       th:object="${item}"
       method="post">
     <input type="hidden" th:field="*{id}" />
-    To Do :<input type="text" th:field="*{task}" />
+    <label for="inputTask">What's To Do?</label>
+    <input class="form-control" type="text" id="inputTask" placeholder="Your task" th:field="*{task}" />
+    <!--To Do :<input type="text" th:field="*{task}" />-->
     <span th:if="${#fields.hasErrors('task')}"
           th:errors="*{task}"></span><br />
-    Date Due (mm/dd/yyyy) :<input type="text" th:field="*{due}" />
+    <label for="inputDate">Date Due</label>
+    <input class="form-control" type="text" id=inputDate placeholder="mm/dd/yyyy" th:field="*{due}" />
+    <!--Date Due (mm/dd/yyyy) :<input type="text" th:field="*{due}" />-->
     <span th:if="${#fields.hasErrors('due')}"
           th:errors="*{due}"></span><br />
-    Priority (yes or no) :<input type="text" th:field="*{priority}" />
+    <label for="inputPriority">Priority?</label>
+    <input class="form-control" type="text" id=inputPriority placeholder="Yes or No" th:field="*{priority}" />
+    <!--Priority (yes or no) :<input type="text" th:field="*{priority}" />-->
     <span th:if="${#fields.hasErrors('priority')}"
           th:errors="*{priority}"></span><br />
     <br />
     <input type="submit" value="Submit">
 </form>
+    </div>
+</div>
 </body>
 </html>

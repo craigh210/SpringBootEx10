@@ -17,6 +17,11 @@ public class HomeController {
     ToDoRepository toDoRepository;
 
     @RequestMapping("/")
+    public String homepage() {
+        return "index";
+    }
+
+    @RequestMapping("/list")
     public String listItems(Model model) {
         model.addAttribute("items", toDoRepository.findAll());
         return "list";
@@ -35,7 +40,7 @@ public class HomeController {
             return "additem";
         }
         toDoRepository.save(item);
-        return "redirect:/";
+        return "redirect:/list";
     }
 
     @RequestMapping("/detail/{id}")
@@ -56,7 +61,7 @@ public class HomeController {
     public String delItem(@PathVariable("id") long id)
     {
         toDoRepository.deleteById(id);
-        return "redirect:/";
+        return "redirect:/list";
     }
 
 }
